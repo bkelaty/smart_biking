@@ -1,13 +1,39 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import Search from './Search';
+import {SearchProvider} from './SearchContext';
+import Home from './Home/Home';
+import Weatherforecast from './Weatherforecast/Weatherforecast';
+import GearList from './Gear/gearList';
+import Gearlistcontainer from './Gear/gearListcontainer';
+import Currentweather from './Currentweather/Currentweather';
 import reportWebVitals from './reportWebVitals';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+// Import all functions required in this page from named libraries
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <SearchProvider>
+    <Router basename={process.env.PUBLIC_URL}>
+      <Switch>
+        <Route exact path="/">
+          <Search />
+        </Route>
+        <Route exact path="/Home">
+          <Home />
+        </Route>
+        <Route exact path="/Weatherforecast">
+          <Weatherforecast />
+        </Route>
+        <Route exact path="/Gear">
+          <Gearlistcontainer />
+        </Route>
+        <Route exact path="/Currentweather">
+          <Currentweather />
+        </Route>
+      </Switch>
+    </Router>
+  </SearchProvider>,
+  /*Enable switching between pages when the Route is called*/
   document.getElementById('root')
 );
 
